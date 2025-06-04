@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://drw84hrwm22f8"]
+
+[ext_resource type="PackedScene" uid="uid://bq0g8d0ni1afg" path="res://scenes/maps/default_map.tscn" id="1_iuonh"]
+[ext_resource type="Script" uid="uid://cckf6ruow7phv" path="res://scenes/main/main.gd" id="1_k2fmo"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_k2fmo")
+
+[node name="DefaultMap" parent="." instance=ExtResource("1_iuonh")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(392, 280)
+zoom = Vector2(3.13, 3.116)
+limit_left = 208
+limit_top = 176
+limit_right = 593
+limit_bottom = 900
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
+[node name="PlayerSpawnPoints" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="0" type="Marker2D" parent="PlayerSpawnPoints" groups=["player_spawn_points"]]
+position = Vector2(232, 200)
+
+[node name="1" type="Marker2D" parent="PlayerSpawnPoints" groups=["player_spawn_points"]]
+position = Vector2(552, 358)
+
+[node name="2" type="Marker2D" parent="PlayerSpawnPoints" groups=["player_spawn_points"]]
+position = Vector2(552, 201)
+
+[node name="3" type="Marker2D" parent="PlayerSpawnPoints" groups=["player_spawn_points"]]
+position = Vector2(232, 355)
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://nwuv6b7nxv63")
+spawn_path = NodePath("..")
+spawn_limit = 5
+
+[node name="PowerUpSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://b2vq4wr3hflym")
+spawn_path = NodePath("../PowerUpContainer")
+spawn_limit = 50
+
+[node name="BombsSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://djrja5a03hdwl")
+spawn_path = NodePath("../BombsContainer")
+spawn_limit = 50
+
+[node name="PowerUpContainer" type="Node2D" parent="."]
+
+[node name="BombsContainer" type="Node2D" parent="."]

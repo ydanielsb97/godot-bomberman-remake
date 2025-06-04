@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1lv5saasr7q3"]
+
+[ext_resource type="PackedScene" uid="uid://bq0g8d0ni1afg" path="res://scenes/maps/default_map.tscn" id="1_cx3mb"]
+[ext_resource type="PackedScene" uid="uid://nwuv6b7nxv63" path="res://scenes/player/player.tscn" id="2_s67ge"]
+
+[node name="Main" type="Node2D"]
+
+[node name="DefaultMap" parent="." instance=ExtResource("1_cx3mb")]
+
+[node name="Character" parent="." instance=ExtResource("2_s67ge")]
+position = Vector2(247, 200)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(392, 280)
+zoom = Vector2(3.13, 3.116)
+limit_left = 208
+limit_top = 176
+limit_right = 593
+limit_bottom = 900
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0

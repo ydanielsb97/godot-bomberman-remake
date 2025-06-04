@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1plp5juc644j"]
+
+[ext_resource type="Script" uid="uid://ceeybv3ee0ql8" path="res://scenes/bomb/explosion_arm.gd" id="1_ygerl"]
+
+[node name="ExplosionArm" type="Node2D"]
+script = ExtResource("1_ygerl")

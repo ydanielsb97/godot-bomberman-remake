@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://cufmssh4doqw6"]
+
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/bomberman sprite.png" id="1_rqyek"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtvay"]
+atlas = ExtResource("1_rqyek")
+region = Rect2(80, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlais"]
+atlas = ExtResource("1_rqyek")
+region = Rect2(80, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbbqc"]
+atlas = ExtResource("1_rqyek")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs7uk"]
+atlas = ExtResource("1_rqyek")
+region = Rect2(80, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5w5h"]
+atlas = ExtResource("1_rqyek")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3eyg"]
+atlas = ExtResource("1_rqyek")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yfok1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtvay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlais")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbbqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs7uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5w5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3eyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5w5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs7uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbbqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlais")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlais")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="EndPart" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_yfok1")
+autoplay = "default"
+flip_v = true

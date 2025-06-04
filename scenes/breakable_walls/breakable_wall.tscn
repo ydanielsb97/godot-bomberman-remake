@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7vbc04eysie7"]
+
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/bomberman sprite.png" id="1_2e1ug"]
+[ext_resource type="Script" uid="uid://cpqs3wqc2bvdn" path="res://scenes/breakable_walls/breakable_wall.gd" id="1_4w440"]
+[ext_resource type="Script" uid="uid://bem4kukdwt3wm" path="res://scenes/breakable_walls/hurt_area.gd" id="3_jl6fy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4w440"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e1ug"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_jl6fy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionArea/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4w440"]
+resource_name = "break"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionArea/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pxghj"]
+_data = {
+&"RESET": SubResource("Animation_jl6fy"),
+&"break": SubResource("Animation_4w440")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jl6fy"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:modulate")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="BreakableWall" type="Node2D"]
+script = ExtResource("1_4w440")
+
+[node name="CollisionArea" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("RectangleShape2D_4w440")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionArea"]
+texture = ExtResource("1_2e1ug")
+hframes = 8
+vframes = 8
+
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("3_jl6fy")
+
+[node name="HurtBox" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("RectangleShape2D_2e1ug")
+debug_color = Color(0.933333, 0, 0, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pxghj")
+}
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jl6fy")
+
+[connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

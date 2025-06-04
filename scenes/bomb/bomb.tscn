@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://djrja5a03hdwl"]
+
+[ext_resource type="Script" uid="uid://cgmnhtqxcweve" path="res://scenes/bomb/bomb.gd" id="1_76ftv"]
+[ext_resource type="Texture2D" uid="uid://do8og81t2av4m" path="res://assets/bomb1.png" id="1_nfxiy"]
+[ext_resource type="Texture2D" uid="uid://8g7kyqgrsaif" path="res://assets/bomb2.png" id="2_6w74q"]
+[ext_resource type="Texture2D" uid="uid://db663qr2s3gfw" path="res://assets/bomb3.png" id="3_bwkwj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_apr5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nfxiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6w74q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwkwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6w74q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_nfxiy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_76ftv"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fy0rd"]
+radius = 7.0
+
+[node name="Bomb" type="StaticBody2D" groups=["bombs"]]
+z_index = 1
+disable_mode = 2
+collision_layer = 16
+script = ExtResource("1_76ftv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_apr5j")
+autoplay = "default"
+frame_progress = 0.277909
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_76ftv")
+debug_color = Color(0.921569, 0, 0, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fy0rd")
+disabled = true
+debug_color = Color(0, 0, 0, 0.419608)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://cg1akyw2t7c5"]
+
+[ext_resource type="Script" uid="uid://crqglbn50d7wy" path="res://scenes/bomb/explosion.gd" id="1_5a2eh"]
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/bomberman sprite.png" id="1_jtvay"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a2eh"]
+atlas = ExtResource("1_jtvay")
+region = Rect2(112, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tief6"]
+atlas = ExtResource("1_jtvay")
+region = Rect2(112, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ao5h"]
+atlas = ExtResource("1_jtvay")
+region = Rect2(112, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6xa3"]
+atlas = ExtResource("1_jtvay")
+region = Rect2(112, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2kyg"]
+atlas = ExtResource("1_jtvay")
+region = Rect2(112, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7qjc"]
+atlas = ExtResource("1_jtvay")
+region = Rect2(112, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlais"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a2eh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tief6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ao5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6xa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2kyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7qjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2kyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6xa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ao5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tief6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a2eh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtvay"]
+size = Vector2(14, 14)
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_5a2eh")
+
+[node name="Center" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Center"]
+sprite_frames = SubResource("SpriteFrames_vlais")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center"]
+shape = SubResource("RectangleShape2D_jtvay")
