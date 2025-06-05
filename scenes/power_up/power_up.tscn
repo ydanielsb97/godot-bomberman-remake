@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_82c1w"]
 radius = 8.0
 
-[node name="PowerUp" type="Area2D"]
+[node name="PowerUp" type="Area2D" groups=["power_up"]]
 z_index = 1
 collision_layer = 32
 script = ExtResource("1_82c1w")

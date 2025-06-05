@@ -1,12 +1,12 @@
-MultiplayerSpawner
 Node2D
+AnimationPlayer
+Sprite2D
+MultiplayerSpawner
 MultiplayerSynchronizer
 Marker2D
 CollisionShape2D
 Area2D
-Sprite2D
 StaticBody2D
-AnimationPlayer
 AnimationTree
 TileMapLayer
 Timer

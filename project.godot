@@ -51,6 +51,7 @@ walls_tilemap=""
 breakable_tilemap=""
 bombs=""
 player_spawn_points=""
+power_up=""
 
 [input]
 

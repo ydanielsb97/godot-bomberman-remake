@@ -21,8 +21,8 @@ func _on_body_entered(player: Player) -> void:
 			apply_bomb_powerup(player)
 		PowerUpManager.PowerUpType.EXPLOSION:
 			apply_explosion_strength_powerup(player)
-			
-	queue_free()
+	
+	MultiplayerManager.power_up_faded.rpc_id(1, name)
 
 func apply_bomb_powerup(player: Player) -> void:
 	player.bomb_max += 1

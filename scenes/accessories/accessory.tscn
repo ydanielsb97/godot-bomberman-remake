@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://8hyygkakgtp2"]
+
+[ext_resource type="Script" uid="uid://doppxgdsjbqeb" path="res://scenes/accessories/accessory.gd" id="1_13qkg"]
+[ext_resource type="Texture2D" uid="uid://gknmn6pisfdu" path="res://assets/top_hat.png" id="2_1h35h"]
+
+[sub_resource type="Animation" id="Animation_0owmy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_75vfm"]
+resource_name = "hat_movement"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -7), Vector2(0, -6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qek5x"]
+_data = {
+&"RESET": SubResource("Animation_0owmy"),
+&"hat_movement": SubResource("Animation_75vfm")
+}
+
+[node name="Accesory" type="Node2D"]
+script = ExtResource("1_13qkg")
+
+[node name="Hat" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource("2_1h35h")
+flip_h = true
+region_rect = Rect2(3, 116, 11, 9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Hat")
+libraries = {
+&"": SubResource("AnimationLibrary_qek5x")
+}
+autoplay = "hat_movement"

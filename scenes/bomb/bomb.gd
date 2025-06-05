@@ -30,7 +30,7 @@ func explode() -> void:
 	new_exposion.setup(player_ref.bomb_strenght)
 	Callable(add_child).call_deferred(new_exposion)
 	await get_tree().create_timer(.5).timeout
-	Callable(queue_free).call_deferred()
+	MultiplayerManager.bomb_exploded.rpc_id(1, name)
 
 func is_bomb_at_position(_position: Vector2) -> bool:
 	for bomb in get_tree().get_nodes_in_group("bombs"):
