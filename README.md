@@ -7,7 +7,8 @@ Built with **Godot 4** and **GDScript**.
 
 ## 📸 Screenshots
 
-_(Coming soon!)_
+![image](https://github.com/user-attachments/assets/42fa000c-186c-46da-b943-67a9c5845e30)
+
 
 ---
 ## 🎯 Project Goals
