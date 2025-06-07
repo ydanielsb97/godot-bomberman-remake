@@ -60,7 +60,7 @@ _data = {
 &"flash": SubResource("Animation_hdjyh")
 }
 
-[node name="PlayerCard" type="NinePatchRect"]
+[node name="PlayerCard" type="NinePatchRect" groups=["lobby_player_cards"]]
 custom_minimum_size = Vector2(250, 0)
 anchors_preset = 13
 anchor_left = 0.5
@@ -132,11 +132,12 @@ layout_mode = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/LeftArrowsContainer"]
+[node name="LeftArrowButton" type="TextureButton" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/LeftArrowsContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+action_mode = 0
 texture_normal = ExtResource("4_tkc0q")
 texture_pressed = ExtResource("5_etpso")
 texture_hover = ExtResource("6_6fw4d")
@@ -172,12 +173,13 @@ layout_mode = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="TextureButton3" type="TextureButton" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/RightArrowsContainer"]
+[node name="RightArrowButton" type="TextureButton" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/RightArrowsContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+action_mode = 0
 texture_normal = ExtResource("4_tkc0q")
 texture_pressed = ExtResource("5_etpso")
 texture_hover = ExtResource("6_6fw4d")
@@ -186,7 +188,6 @@ stretch_mode = 0
 flip_h = true
 
 [node name="InvitePlayerLabel" type="Label" parent="MarginContainer"]
-visible = false
 layout_mode = 2
 text = "INVITE A FRIEND"
 label_settings = SubResource("LabelSettings_0v8f1")
@@ -198,3 +199,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_s4hj5")
 }
 autoplay = "flash"
+
+[connection signal="text_changed" from="MarginContainer/PlayerContainer/PlayerNameContainer/PlayerNameInput" to="." method="_on_player_name_input_text_changed"]
+[connection signal="button_down" from="MarginContainer/PlayerContainer/PlayerBodyContainer/LeftArrowsContainer/LeftArrowButton" to="." method="_on_left_arrow_button_button_down"]
+[connection signal="pressed" from="MarginContainer/PlayerContainer/PlayerBodyContainer/LeftArrowsContainer/LeftArrowButton" to="." method="_on_left_arrow_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PlayerContainer/PlayerBodyContainer/RightArrowsContainer/RightArrowButton" to="." method="_on_right_arrow_button_pressed"]

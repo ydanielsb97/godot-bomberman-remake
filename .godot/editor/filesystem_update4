@@ -10,3 +10,6 @@ res://scenes/game_ui/player_card.gd
 res://globals/game_manager.gd
 res://scenes/accessories/accessory.gd
 res://globals/power_up_manager.gd
+res://constants/group_names.gd
+res://scenes/game_ui/main_ui.gd
+res://constants/skin_textures.gd

@@ -51,6 +51,7 @@ breakable_tilemap=""
 bombs=""
 player_spawn_points=""
 power_up=""
+lobby_player_cards=""
 
 [input]
 

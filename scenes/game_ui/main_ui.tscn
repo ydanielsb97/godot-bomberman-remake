@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=4 uid="uid://dfgacgv3hyvfc"]
+[gd_scene load_steps=20 format=4 uid="uid://dfgacgv3hyvfc"]
 
 [ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/images/bomberman sprite.png" id="1_4xkup"]
+[ext_resource type="Script" uid="uid://do7ef3ut533x" path="res://scenes/game_ui/main_ui.gd" id="1_q1yry"]
 [ext_resource type="PackedScene" uid="uid://c7vbc04eysie7" path="res://scenes/breakable_walls/breakable_wall.tscn" id="2_r04e4"]
 [ext_resource type="PackedScene" uid="uid://cyh6l1j3krayd" path="res://scenes/game_ui/main_menu.tscn" id="3_ugynx"]
 [ext_resource type="Texture2D" uid="uid://pj42btbhreto" path="res://assets/images/ui/blue_button_rectangle_depth_border.png" id="4_ugynx"]
@@ -99,6 +100,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_q1yry")
 
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(-651, -550)
@@ -210,19 +212,15 @@ alignment = 1
 
 [node name="PlayerCard" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("8_mrnvk")]
 layout_mode = 2
-is_current_player = false
 
 [node name="PlayerCard2" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("8_mrnvk")]
 layout_mode = 2
-is_current_player = false
 
 [node name="PlayerCard3" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("8_mrnvk")]
 layout_mode = 2
-is_current_player = false
 
 [node name="PlayerCard4" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("8_mrnvk")]
 layout_mode = 2
-is_current_player = false
 
 [node name="RoomActions" type="HBoxContainer" parent="RoomLobby/MarginContainer/VBoxContainer"]
 layout_mode = 2
