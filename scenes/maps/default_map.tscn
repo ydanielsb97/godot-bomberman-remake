@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://bq0g8d0ni1afg"]
 
-[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/bomberman sprite.png" id="1_un36d"]
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/images/bomberman sprite.png" id="1_un36d"]
 [ext_resource type="PackedScene" uid="uid://c7vbc04eysie7" path="res://scenes/breakable_walls/breakable_wall.tscn" id="2_0hmxm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hmxm"]

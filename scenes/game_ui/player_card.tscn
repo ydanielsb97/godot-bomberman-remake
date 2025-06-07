@@ -1,0 +1,201 @@
+[gd_scene load_steps=15 format=3 uid="uid://c2cyd5vx6okr5"]
+
+[ext_resource type="Texture2D" uid="uid://pj42btbhreto" path="res://assets/images/ui/blue_button_rectangle_depth_border.png" id="1_ub3yq"]
+[ext_resource type="Script" uid="uid://cu85ypco857jl" path="res://scenes/game_ui/player_card.gd" id="2_382lf"]
+[ext_resource type="Theme" uid="uid://b24gu25idm3ov" path="res://resources/main_input_theme.tres" id="2_amjgc"]
+[ext_resource type="LabelSettings" uid="uid://banyuxw0lv7og" path="res://resources/secondary_font.tres" id="3_382lf"]
+[ext_resource type="Texture2D" uid="uid://u1kxybkpakbg" path="res://assets/images/ui/blue_arrow_decorative_w.png" id="4_tkc0q"]
+[ext_resource type="Texture2D" uid="uid://bs0v6vb3jhnd8" path="res://assets/images/ui/yellow_arrow_decorative_w.png" id="5_etpso"]
+[ext_resource type="Texture2D" uid="uid://cwhlt5etnyerc" path="res://assets/images/ui/green_arrow_decorative_w.png" id="6_6fw4d"]
+[ext_resource type="Texture2D" uid="uid://bl64mmi5ijx64" path="res://assets/images/characters/animation characters.png" id="7_ja7ea"]
+[ext_resource type="FontFile" uid="uid://flgrf5wyqn0" path="res://assets/fonts/Kenney Future.ttf" id="8_tdybu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fsth"]
+atlas = ExtResource("7_ja7ea")
+region = Rect2(26, 0, 9, 12)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0v8f1"]
+font = ExtResource("8_tdybu")
+font_color = Color(0.211765, 0.741176, 0.968627, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.611765)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_fq142"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hdjyh"]
+resource_name = "flash"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.25098)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4hj5"]
+_data = {
+&"RESET": SubResource("Animation_fq142"),
+&"flash": SubResource("Animation_hdjyh")
+}
+
+[node name="PlayerCard" type="NinePatchRect"]
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ub3yq")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 12
+script = ExtResource("2_382lf")
+is_current_player = null
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 30
+
+[node name="PlayerContainer" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="PlayerNameContainer" type="BoxContainer" parent="MarginContainer/PlayerContainer"]
+custom_minimum_size = Vector2(0, 39)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="PlayerNameInput" type="LineEdit" parent="MarginContainer/PlayerContainer/PlayerNameContainer"]
+custom_minimum_size = Vector2(180, 39)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "Type your username."
+focus_mode = 1
+theme = ExtResource("2_amjgc")
+placeholder_text = "Username..."
+max_length = 15
+
+[node name="PlayerNameLabel" type="Label" parent="MarginContainer/PlayerContainer/PlayerNameContainer"]
+visible = false
+layout_mode = 2
+text = "Player 2"
+label_settings = ExtResource("3_382lf")
+
+[node name="PlayerBodyContainer" type="HBoxContainer" parent="MarginContainer/PlayerContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="LeftArrowsContainer" type="VBoxContainer" parent="MarginContainer/PlayerContainer/PlayerBodyContainer"]
+z_index = 2
+z_as_relative = false
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/LeftArrowsContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("4_tkc0q")
+texture_pressed = ExtResource("5_etpso")
+texture_hover = ExtResource("6_6fw4d")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PlayerContainer" type="Control" parent="MarginContainer/PlayerContainer/PlayerBodyContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BodyContainer" type="HBoxContainer" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/PlayerContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/PlayerContainer/BodyContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+texture = SubResource("AtlasTexture_5fsth")
+expand_mode = 3
+
+[node name="RightArrowsContainer" type="VBoxContainer" parent="MarginContainer/PlayerContainer/PlayerBodyContainer"]
+z_index = 2
+z_as_relative = false
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="MarginContainer/PlayerContainer/PlayerBodyContainer/RightArrowsContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_tkc0q")
+texture_pressed = ExtResource("5_etpso")
+texture_hover = ExtResource("6_6fw4d")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[node name="InvitePlayerLabel" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+text = "INVITE A FRIEND"
+label_settings = SubResource("LabelSettings_0v8f1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/InvitePlayerLabel"]
+libraries = {
+&"": SubResource("AnimationLibrary_s4hj5")
+}
+autoplay = "flash"

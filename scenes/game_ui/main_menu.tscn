@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyh6l1j3krayd"]
+
+[ext_resource type="LabelSettings" uid="uid://bu102jerxku5w" path="res://resources/title.tres" id="3_wfwiu"]
+[ext_resource type="Texture2D" uid="uid://do8og81t2av4m" path="res://assets/images/bombs/bomb1.png" id="3_x8br1"]
+[ext_resource type="Texture2D" uid="uid://8g7kyqgrsaif" path="res://assets/images/bombs/bomb2.png" id="4_wfwiu"]
+[ext_resource type="Texture2D" uid="uid://db663qr2s3gfw" path="res://assets/images/bombs/bomb3.png" id="5_q2ahq"]
+[ext_resource type="FontFile" uid="uid://flgrf5wyqn0" path="res://assets/fonts/Kenney Future.ttf" id="8_e5y31"]
+[ext_resource type="StyleBox" uid="uid://c1kgq15mookjw" path="res://resources/primary_button_normal_style.tres" id="8_hlgj4"]
+[ext_resource type="Theme" uid="uid://bxcmt2bmobx56" path="res://resources/main_button_theme.tres" id="9_hlgj4"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_hlgj4"]
+frames = 3
+frame_0/texture = ExtResource("3_x8br1")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("4_wfwiu")
+frame_1/duration = 0.2
+frame_2/texture = ExtResource("5_q2ahq")
+frame_2/duration = 0.2
+
+[node name="MainMenu" type="Panel"]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.5
+offset_top = -191.5
+offset_right = 376.5
+offset_bottom = 191.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Title"]
+layout_mode = 2
+text = "B"
+label_settings = ExtResource("3_wfwiu")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Title"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_hlgj4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Title"]
+layout_mode = 2
+text = "MBER  FRIENDS"
+label_settings = ExtResource("3_wfwiu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 20
+
+[node name="TextureButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(250, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("9_hlgj4")
+theme_override_styles/normal = ExtResource("8_hlgj4")
+text = "CREATE ROOM"
+
+[node name="TextureButton2" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("9_hlgj4")
+theme_override_fonts/font = ExtResource("8_e5y31")
+text = "JOIN ROOM"

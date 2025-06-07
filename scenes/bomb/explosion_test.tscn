@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://b0x8wfhrt5nli"]
 
 [ext_resource type="Script" uid="uid://crqglbn50d7wy" path="res://scenes/bomb/explosion.gd" id="1_ccxax"]
-[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/bomberman sprite.png" id="2_cl8t2"]
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/images/bomberman sprite.png" id="2_cl8t2"]
 [ext_resource type="PackedScene" uid="uid://d1plp5juc644j" path="res://scenes/bomb/explosion_arm.tscn" id="3_4ifqj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5a2eh"]

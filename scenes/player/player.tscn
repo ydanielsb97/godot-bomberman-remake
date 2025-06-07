@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=3 uid="uid://nwuv6b7nxv63"]
 
-[ext_resource type="Texture2D" uid="uid://bl64mmi5ijx64" path="res://assets/animation characters.png" id="1_6nn2t"]
+[ext_resource type="Texture2D" uid="uid://bl64mmi5ijx64" path="res://assets/images/characters/animation characters.png" id="1_6nn2t"]
 [ext_resource type="Script" uid="uid://bh5ho78b0a84e" path="res://scenes/player/player.gd" id="1_cuyo6"]
 [ext_resource type="Shape2D" uid="uid://ca4xoohjlmq04" path="res://resources/player_collision_shape.tres" id="3_gmlin"]
 [ext_resource type="Shape2D" uid="uid://ptfapjmgn4eo" path="res://scenes/player/player_collision_shape.tres" id="3_lvxji"]
@@ -44,7 +44,7 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_0rlhq"]
+[sub_resource type="Animation" id="Animation_lvxji"]
 resource_name = "die"
 length = 0.5
 tracks/0/type = "value"
@@ -74,7 +74,7 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_7ex5l"]
+[sub_resource type="Animation" id="Animation_p47bc"]
 resource_name = "idle_down"
 length = 0.5
 loop_mode = 1
@@ -103,7 +103,7 @@ tracks/1/keys = {
 "values": [Vector2(-1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fgi2k"]
+[sub_resource type="Animation" id="Animation_75vfm"]
 resource_name = "idle_left"
 length = 0.5
 loop_mode = 1
@@ -132,7 +132,7 @@ tracks/1/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_cuyo6"]
+[sub_resource type="Animation" id="Animation_0owmy"]
 resource_name = "idle_right"
 length = 0.5
 loop_mode = 1
@@ -161,7 +161,7 @@ tracks/1/keys = {
 "values": [Vector2(2, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_f8hpl"]
+[sub_resource type="Animation" id="Animation_qek5x"]
 resource_name = "idle_up"
 length = 0.5
 loop_mode = 1
@@ -190,7 +190,7 @@ tracks/1/keys = {
 "values": [Vector2(-2, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_bix7t"]
+[sub_resource type="Animation" id="Animation_5gtgg"]
 resource_name = "walk_down"
 length = 0.5
 loop_mode = 1
@@ -219,7 +219,7 @@ tracks/1/keys = {
 "values": [Vector2(-1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_q52vl"]
+[sub_resource type="Animation" id="Animation_h17s1"]
 resource_name = "walking_left"
 length = 0.5
 loop_mode = 1
@@ -248,7 +248,7 @@ tracks/1/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_l884r"]
+[sub_resource type="Animation" id="Animation_je7p5"]
 resource_name = "walking_right"
 length = 0.5
 loop_mode = 1
@@ -277,7 +277,7 @@ tracks/1/keys = {
 "values": [Vector2(2, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_bblvu"]
+[sub_resource type="Animation" id="Animation_fm80t"]
 resource_name = "walking_up"
 length = 0.5
 loop_mode = 1
@@ -309,15 +309,15 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fgi2k"]
 _data = {
 &"RESET": SubResource("Animation_mutn8"),
-&"die": SubResource("Animation_0rlhq"),
-&"idle_down": SubResource("Animation_7ex5l"),
-&"idle_left": SubResource("Animation_fgi2k"),
-&"idle_right": SubResource("Animation_cuyo6"),
-&"idle_up": SubResource("Animation_f8hpl"),
-&"walk_down": SubResource("Animation_bix7t"),
-&"walking_left": SubResource("Animation_q52vl"),
-&"walking_right": SubResource("Animation_l884r"),
-&"walking_up": SubResource("Animation_bblvu")
+&"die": SubResource("Animation_lvxji"),
+&"idle_down": SubResource("Animation_p47bc"),
+&"idle_left": SubResource("Animation_75vfm"),
+&"idle_right": SubResource("Animation_0owmy"),
+&"idle_up": SubResource("Animation_qek5x"),
+&"walk_down": SubResource("Animation_5gtgg"),
+&"walking_left": SubResource("Animation_h17s1"),
+&"walking_right": SubResource("Animation_je7p5"),
+&"walking_up": SubResource("Animation_fm80t")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuyo6"]

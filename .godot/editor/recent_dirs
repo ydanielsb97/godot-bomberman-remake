@@ -1,9 +1,11 @@
+res://scenes/game_ui
+res://resources
+res://scenes/player
+F:/Games/Godot/bomberman-remake/server
 res://scenes/accessories
 res://scenes/bomb
 res://scenes/power_up
-res://scenes/player
 res://globals
-res://resources
 res://scenes/breakable_walls
 res://assets
 res://

@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bepdoivtlworr"]
+
+[ext_resource type="Texture2D" uid="uid://da1mi4w7hh63i" path="res://assets/images/ui/green_button_rectangle_line.png" id="1_bjafi"]
+
+[resource]
+texture = ExtResource("1_bjafi")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0

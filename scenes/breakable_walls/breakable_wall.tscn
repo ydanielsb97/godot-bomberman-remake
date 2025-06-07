@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c7vbc04eysie7"]
 
-[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/bomberman sprite.png" id="1_2e1ug"]
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/images/bomberman sprite.png" id="1_2e1ug"]
 [ext_resource type="Script" uid="uid://cpqs3wqc2bvdn" path="res://scenes/breakable_walls/breakable_wall.gd" id="1_4w440"]
 [ext_resource type="Script" uid="uid://bem4kukdwt3wm" path="res://scenes/breakable_walls/hurt_area.gd" id="3_jl6fy"]
 

@@ -4,6 +4,7 @@ const PLAYER = preload("res://scenes/player/player.tscn")
 
 const PORT: int = 27090
 const MAX_PLAYERS: int = 4
+#const MY_IP: String = "161.35.189.235"
 const MY_IP: String = "127.0.0.1"
 
 var peer
@@ -15,29 +16,36 @@ func _ready() -> void:
 func on_connected_to_server() -> void:
 	print_debug("on_connected_to_server", multiplayer.get_unique_id())
 
+@rpc("any_peer", "call_local")
 func start_game() -> void:
 	if multiplayer.is_server():
+		var spawner: MultiplayerSpawner = get_node("/root/Main/PlayerSpawner")
+		spawner.clear_spawnable_scenes()
 		var peers: Array = multiplayer.get_peers()
-		peers.push_front(1)
 		for index in range(len(peers)):
 			var peer_id = peers[index]
-			GameManager.players[peer_id] = {
-				"id": peer_id,
-				"name": "Player-" + str(peer_id)
-			}
-			update_players.rpc(GameManager.players)
-			var spawner: MultiplayerSpawner = get_node("/root/Main/PlayerSpawner")
 			spawner.spawn({
 				"peer_id": peer_id, 
 				"index": index
 				})
 
+@rpc("any_peer", "call_local")
+func restart_match():
+	if multiplayer.is_server():
+		for player: Player in get_tree().get_nodes_in_group(GroupNames.PLAYERS):
+			player.queue_free()
+		for bomb: Bomb in get_tree().get_nodes_in_group(GroupNames.BOMBS):
+			bomb.queue_free()
+		for power_up: PowerUp in get_tree().get_nodes_in_group(GroupNames.POWER_UP):
+			power_up.queue_free()
+	
+	get_tree().reload_current_scene()
+	
 func on_peer_connected(id: int) -> void:
 	print_debug("on_peer_connected", id)
 
 func host_game() -> void:
 	peer = ENetMultiplayerPeer.new()
-	peer.set_bind_ip(MY_IP)
 	peer.create_server(PORT, MAX_PLAYERS)
 	multiplayer.multiplayer_peer = peer
 

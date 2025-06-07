@@ -13,7 +13,7 @@ const textures: Dictionary[PowerUpType, CompressedTexture2D] = {
 	#PowerUpType.SPEED: preload("res://assets/bomb_speed.png"),
 }
 
-const RATE_SPAWN: float = 1.0
+const RATE_SPAWN: float = .4
 
 func spawn_power_up(_global_position: Vector2) -> void:
 	if !multiplayer.is_server(): return

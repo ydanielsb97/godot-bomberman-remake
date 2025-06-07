@@ -21,8 +21,9 @@ func setup(player: Player, world_position: Vector2) -> void:
 
 func explode() -> void:
 	timer.stop()
-	if exploding: return
+	if exploding or !is_instance_valid(player_ref): return
 	exploding = true
+	
 	player_ref.current_bombs -= 1
 	animated_sprite_2d.hide()
 	

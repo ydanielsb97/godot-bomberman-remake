@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://djrja5a03hdwl"]
 
 [ext_resource type="Script" uid="uid://cgmnhtqxcweve" path="res://scenes/bomb/bomb.gd" id="1_76ftv"]
-[ext_resource type="Texture2D" uid="uid://do8og81t2av4m" path="res://assets/bomb1.png" id="1_nfxiy"]
-[ext_resource type="Texture2D" uid="uid://8g7kyqgrsaif" path="res://assets/bomb2.png" id="2_6w74q"]
-[ext_resource type="Texture2D" uid="uid://db663qr2s3gfw" path="res://assets/bomb3.png" id="3_bwkwj"]
+[ext_resource type="Texture2D" uid="uid://do8og81t2av4m" path="res://assets/images/bombs/bomb1.png" id="1_nfxiy"]
+[ext_resource type="Texture2D" uid="uid://8g7kyqgrsaif" path="res://assets/images/bombs/bomb2.png" id="2_6w74q"]
+[ext_resource type="Texture2D" uid="uid://db663qr2s3gfw" path="res://assets/images/bombs/bomb3.png" id="3_bwkwj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_apr5j"]
 animations = [{

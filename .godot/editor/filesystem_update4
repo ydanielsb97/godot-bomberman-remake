@@ -1,6 +1,10 @@
-res://scenes/accessories/accessory.tscn
+res://scenes/game_ui/main_ui.tscn
 res://resources/player_collision_shape.tres
 res://scenes/player/player_collision_shape.tres
-res://scenes/player/player.tscn
-res://scenes/power_up/power_up.tscn
-res://scenes/power_up/power_up.gd
+res://resources/primary_button_hover_style.tres
+res://resources/main_button_theme.tres
+res://resources/main_input_theme.tres
+res://resources/cancel_button_theme.tres
+res://scenes/game_ui/player_card.tscn
+res://scenes/game_ui/player_card.gd
+res://globals/game_manager.gd

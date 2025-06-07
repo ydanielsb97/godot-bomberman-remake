@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b5r3l0efh1k8k"]
+
+[ext_resource type="Texture2D" uid="uid://cuebo1d0xqqbf" path="res://assets/images/ui/white_input_rectangle.png" id="1_2fvls"]
+
+[resource]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_2fvls")
+region_rect = Rect2(0, 0, 384, 128)

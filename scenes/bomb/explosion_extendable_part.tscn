@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b0csjxqn3me14"]
 
-[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/bomberman sprite.png" id="1_ewwo3"]
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/images/bomberman sprite.png" id="1_ewwo3"]
 [ext_resource type="Script" uid="uid://xyxhh317s0s1" path="res://scenes/bomb/explosion_extendable_part.gd" id="2_f0pb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0pb6"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://8hyygkakgtp2"]
 
 [ext_resource type="Script" uid="uid://doppxgdsjbqeb" path="res://scenes/accessories/accessory.gd" id="1_13qkg"]
-[ext_resource type="Texture2D" uid="uid://gknmn6pisfdu" path="res://assets/top_hat.png" id="2_1h35h"]
+[ext_resource type="Texture2D" uid="uid://gknmn6pisfdu" path="res://assets/images/accessories/top_hat.png" id="2_1h35h"]
 
 [sub_resource type="Animation" id="Animation_0owmy"]
 length = 0.001

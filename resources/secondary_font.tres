@@ -1,0 +1,12 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://banyuxw0lv7og"]
+
+[ext_resource type="FontFile" uid="uid://flgrf5wyqn0" path="res://assets/fonts/Kenney Future.ttf" id="1_4p5vy"]
+
+[resource]
+font = ExtResource("1_4p5vy")
+font_size = 24
+font_color = Color(0.211765, 0.741176, 0.968627, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.611765)
+shadow_offset = Vector2(2, 2)

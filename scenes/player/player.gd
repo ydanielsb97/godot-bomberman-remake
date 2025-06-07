@@ -8,8 +8,6 @@ const ACCESSORY = preload("res://scenes/accessories/accessory.tscn")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var collision_bomb_box: Area2D = $CollisionBombBox
-@onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
-
 @export var speed: float = 70.0
 @export var bomb_strenght = 1
 @export var bomb_max: int = 1
@@ -43,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 
 func is_authority() -> bool:
-	return multiplayer_synchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
+	return true
 	
 func handle_movement() -> void:
 	var axis_x: float = Input.get_axis("ui_left", "ui_right")

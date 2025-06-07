@@ -1,3 +1,5 @@
 extends Node
 
-var players: Dictionary = {}
+var players: Dictionary = {
+	
+}
