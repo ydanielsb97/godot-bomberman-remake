@@ -11,10 +11,11 @@ extends NinePatchRect
 @export var is_current_player: bool = false
 
 func _ready() -> void:
-	if is_current_player:
-		player_container.show()
-	else:
-		
+	pass
+	#if is_current_player:
+		#player_container.show()
+	#else:
+		#
 
 func _process(delta: float) -> void:
 	pass

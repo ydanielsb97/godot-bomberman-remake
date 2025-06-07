@@ -9,10 +9,10 @@ enum AccessoryType {
 	PARTY_HAT
 }
 const TEXTURES: Dictionary[AccessoryType, CompressedTexture2D] = {
-	AccessoryType.TOP_HAT: preload("res://assets/top_hat.png"),
-	AccessoryType.CROWN: preload("res://assets/crown.png"),
-	AccessoryType.SANTA_HAT: preload("res://assets/santa.png"),
-	AccessoryType.PARTY_HAT: preload("res://assets/party_hat.png")
+	AccessoryType.TOP_HAT: preload("res://assets/images/accessories/top_hat.png"),
+	AccessoryType.CROWN: preload("res://assets/images/accessories/crown.png"),
+	AccessoryType.SANTA_HAT: preload("res://assets/images/accessories/santa.png"),
+	AccessoryType.PARTY_HAT: preload("res://assets/images/accessories/party_hat.png")
 }
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

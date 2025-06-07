@@ -8,3 +8,5 @@ res://resources/cancel_button_theme.tres
 res://scenes/game_ui/player_card.tscn
 res://scenes/game_ui/player_card.gd
 res://globals/game_manager.gd
+res://scenes/accessories/accessory.gd
+res://globals/power_up_manager.gd

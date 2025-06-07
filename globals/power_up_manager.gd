@@ -8,8 +8,8 @@ enum PowerUpType {
 const POWER_UP = preload("res://scenes/power_up/power_up.tscn")
 
 const textures: Dictionary[PowerUpType, CompressedTexture2D] = {
-	PowerUpType.BOMB: preload("res://assets/bomb_powerup.png"),
-	PowerUpType.EXPLOSION: preload("res://assets/explosion_power_up.png"),
+	PowerUpType.BOMB: preload("res://assets/images/power_ups/bomb_powerup.png"),
+	PowerUpType.EXPLOSION: preload("res://assets/images/power_ups/explosion_power_up.png"),
 	#PowerUpType.SPEED: preload("res://assets/bomb_speed.png"),
 }
 
