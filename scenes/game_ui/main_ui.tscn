@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://bxcmt2bmobx56" path="res://resources/main_button_theme.tres" id="6_gihal"]
 [ext_resource type="StyleBox" uid="uid://c1kgq15mookjw" path="res://resources/primary_button_normal_style.tres" id="7_xisuj"]
 [ext_resource type="PackedScene" uid="uid://c2cyd5vx6okr5" path="res://scenes/game_ui/player_card.tscn" id="8_mrnvk"]
-[ext_resource type="Theme" uid="uid://bbkxx4iwqmsd5" path="res://resources/cancel_button_theme.tres" id="8_xisuj"]
+[ext_resource type="Theme" path="res://resources/cancel_button_theme2.tres" id="9_bp61b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hmxm"]
 texture = ExtResource("1_4xkup")
@@ -232,7 +232,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 0
-theme = ExtResource("8_xisuj")
+theme = ExtResource("9_bp61b")
 text = "EXIT"
 
 [node name="StartButton" type="Button" parent="RoomLobby/MarginContainer/VBoxContainer/RoomActions"]
