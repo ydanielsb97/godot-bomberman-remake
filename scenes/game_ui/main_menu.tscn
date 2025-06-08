@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyh6l1j3krayd"]
+[gd_scene load_steps=13 format=3 uid="uid://cyh6l1j3krayd"]
 
+[ext_resource type="Script" uid="uid://vxi6ej5u4ys4" path="res://scenes/game_ui/main_menu.gd" id="1_hlgj4"]
 [ext_resource type="LabelSettings" uid="uid://bu102jerxku5w" path="res://resources/title.tres" id="3_wfwiu"]
 [ext_resource type="Texture2D" uid="uid://do8og81t2av4m" path="res://assets/images/bombs/bomb1.png" id="3_x8br1"]
 [ext_resource type="Texture2D" uid="uid://8g7kyqgrsaif" path="res://assets/images/bombs/bomb2.png" id="4_wfwiu"]
 [ext_resource type="Texture2D" uid="uid://db663qr2s3gfw" path="res://assets/images/bombs/bomb3.png" id="5_q2ahq"]
 [ext_resource type="FontFile" uid="uid://flgrf5wyqn0" path="res://assets/fonts/Kenney Future.ttf" id="8_e5y31"]
 [ext_resource type="StyleBox" uid="uid://c1kgq15mookjw" path="res://resources/primary_button_normal_style.tres" id="8_hlgj4"]
+[ext_resource type="PackedScene" uid="uid://cdv4qmqdb0qut" path="res://scenes/game_ui/loading.tscn" id="8_xs3ft"]
 [ext_resource type="Theme" uid="uid://bxcmt2bmobx56" path="res://resources/main_button_theme.tres" id="9_hlgj4"]
+[ext_resource type="Theme" uid="uid://b24gu25idm3ov" path="res://resources/main_input_theme.tres" id="9_oibto"]
+[ext_resource type="Theme" uid="uid://bbkxx4iwqmsd5" path="res://resources/cancel_button_theme.tres" id="10_drx4d"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_hlgj4"]
 frames = 3
@@ -30,6 +34,7 @@ offset_right = 376.5
 offset_bottom = 191.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hlgj4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -70,12 +75,13 @@ layout_mode = 2
 text = "MBER  FRIENDS"
 label_settings = ExtResource("3_wfwiu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MenuButtonsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 20
 
-[node name="TextureButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="CreateRoomButton" type="Button" parent="MarginContainer/VBoxContainer/MenuButtonsContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
@@ -86,7 +92,7 @@ theme = ExtResource("9_hlgj4")
 theme_override_styles/normal = ExtResource("8_hlgj4")
 text = "CREATE ROOM"
 
-[node name="TextureButton2" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="JoinRoomButton" type="Button" parent="MarginContainer/VBoxContainer/MenuButtonsContainer"]
 custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -95,3 +101,69 @@ focus_mode = 0
 theme = ExtResource("9_hlgj4")
 theme_override_fonts/font = ExtResource("8_e5y31")
 text = "JOIN ROOM"
+
+[node name="CreateRoomTimeout" type="Timer" parent="MarginContainer/VBoxContainer/MenuButtonsContainer"]
+wait_time = 5.0
+one_shot = true
+
+[node name="JoinRoomMenuContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 20
+
+[node name="RoomCodeInput" type="LineEdit" parent="MarginContainer/VBoxContainer/JoinRoomMenuContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Type your username."
+focus_mode = 1
+theme = ExtResource("9_oibto")
+placeholder_text = "ROOM CODE..."
+alignment = 1
+max_length = 4
+
+[node name="JoinRoomTimeout" type="Timer" parent="MarginContainer/VBoxContainer/JoinRoomMenuContainer"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/JoinRoomMenuContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackMenuButton" type="Button" parent="MarginContainer/VBoxContainer/JoinRoomMenuContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("10_drx4d")
+theme_override_fonts/font = ExtResource("8_e5y31")
+text = "back"
+
+[node name="TryJoinRoomButton" type="Button" parent="MarginContainer/VBoxContainer/JoinRoomMenuContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(110, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("9_hlgj4")
+theme_override_styles/normal = ExtResource("8_hlgj4")
+text = "ENTER"
+
+[node name="Loading" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_xs3ft")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtonsContainer/CreateRoomButton" to="." method="_on_create_room_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtonsContainer/JoinRoomButton" to="." method="_on_join_room_button_pressed"]
+[connection signal="timeout" from="MarginContainer/VBoxContainer/MenuButtonsContainer/CreateRoomTimeout" to="." method="_on_create_room_timeout_timeout"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/RoomCodeInput" to="." method="_on_room_code_input_text_changed"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/RoomCodeInput" to="." method="_on_room_code_input_text_submitted"]
+[connection signal="timeout" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/JoinRoomTimeout" to="." method="_on_create_room_timeout_timeout"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/HBoxContainer/BackMenuButton" to="." method="_on_back_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/HBoxContainer/TryJoinRoomButton" to="." method="_on_try_join_room_button_pressed"]

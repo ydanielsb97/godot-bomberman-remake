@@ -11,7 +11,7 @@ class_name PlayerCard
 @onready var texture_rect: TextureRect = $MarginContainer/PlayerContainer/PlayerBodyContainer/PlayerContainer/BodyContainer/TextureRect
 
 var is_current_player: bool = false
-var player_name: String = "Player"
+var player_name: String = ""
 var player_texture: SkinTextures.Types = SkinTextures.Types.WHITE
 var player_id: int
 
@@ -20,12 +20,17 @@ func setup(
 	_is_current_player: bool, 
 	_player_name: String, 
 	_player_texture: SkinTextures.Types) -> void:
+	
 	is_current_player = _is_current_player
 	player_name = _player_name
 	player_id = _player_id
 	player_texture = _player_texture
 	update_card_info()
 
+func clear() -> void:
+	player_container.hide()
+	invite_player_label.show()
+	
 func update_card_info() -> void:
 	player_container.show()
 	invite_player_label.hide()
@@ -40,13 +45,35 @@ func update_card_info() -> void:
 	new_atlas.region = Rect2(26, 0, 9, 12)
 	texture_rect.texture = new_atlas
 
+func update_player_basic_info(_player_name: String, _texture: SkinTextures.Types) -> void:
+	player_name = _player_name
+	player_texture = _texture
+	player_name_label.text = player_name
+	var new_skin = SkinTextures.TEXTURES[player_texture]
+	texture_rect.texture.set("atlas", SkinTextures.TEXTURES[player_texture])
+
 func update_texture() -> void:
 	var new_skin = SkinTextures.TEXTURES[player_texture]
 	texture_rect.texture.set("atlas", SkinTextures.TEXTURES[player_texture])
-	GameManager.update_player_skin(player_id, player_texture)
+	MultiplayerManager.rpc_update_my_player_info.rpc_id(
+		1,
+		int(GameManager.room_code),
+		player_id,
+		"skin",
+		player_texture
+	)
+
+func update_label_name() -> void:
+	player_name_label.text = player_name
 
 func _on_player_name_input_text_changed(new_text: String) -> void:
-	GameManager.update_player_name(player_id, new_text)
+	MultiplayerManager.rpc_update_my_player_info.rpc_id(
+		1,
+		int(GameManager.room_code),
+		player_id,
+		"name",
+		new_text
+	)
 
 func _on_left_arrow_button_pressed() -> void:
 	var new_index = player_texture - 1

@@ -3,6 +3,7 @@ extends Object
 class_name SkinTextures
 
 enum Types {
+	WHITE,
 	BLUE,
 	RED,
 	CYAN,
@@ -13,11 +14,11 @@ enum Types {
 	ORANGE_PASTEL,
 	PASTELISH_GREEN,
 	PINK,
-	PURPLE,
-	WHITE
+	PURPLE
 }
 
 const TEXTURES: Dictionary[Types, CompressedTexture2D]= {
+	Types.WHITE: preload("res://assets/images/characters/animation characters.png"),
 	Types.BLUE: preload("res://assets/images/characters/animation characters blue.png"),
 	Types.RED: preload("res://assets/images/characters/red1.png"),
 	Types.CYAN: preload("res://assets/images/characters/animation characters cyan.png"),
@@ -29,5 +30,4 @@ const TEXTURES: Dictionary[Types, CompressedTexture2D]= {
 	Types.PASTELISH_GREEN: preload("res://assets/images/characters/animation characters pastelish green.png"),
 	Types.PINK: preload("res://assets/images/characters/animation characters pink.png"),
 	Types.PURPLE: preload("res://assets/images/characters/animation characters purple.png"),
-	Types.WHITE: preload("res://assets/images/characters/animation characters.png")
 }

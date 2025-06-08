@@ -110,7 +110,8 @@ tooltip_text = "Type your username."
 focus_mode = 1
 theme = ExtResource("2_amjgc")
 placeholder_text = "Username..."
-max_length = 15
+alignment = 1
+max_length = 10
 
 [node name="PlayerNameLabel" type="Label" parent="MarginContainer/PlayerContainer/PlayerNameContainer"]
 visible = false

@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqxaqxpepmwik"]
+
+[ext_resource type="Texture2D" uid="uid://pj42btbhreto" path="res://assets/images/ui/blue_button_rectangle_depth_border.png" id="1_u48va"]
+[ext_resource type="Script" uid="uid://r1jquf7we1ph" path="res://scenes/game_ui/room_lobby.gd" id="1_xec1a"]
+[ext_resource type="LabelSettings" uid="uid://banyuxw0lv7og" path="res://resources/secondary_font.tres" id="2_xec1a"]
+[ext_resource type="Theme" uid="uid://bxcmt2bmobx56" path="res://resources/main_button_theme.tres" id="3_gc0rd"]
+[ext_resource type="StyleBox" uid="uid://c1kgq15mookjw" path="res://resources/primary_button_normal_style.tres" id="4_befyh"]
+[ext_resource type="PackedScene" uid="uid://c2cyd5vx6okr5" path="res://scenes/game_ui/player_card.tscn" id="5_sp0qt"]
+[ext_resource type="Theme" uid="uid://bbkxx4iwqmsd5" path="res://resources/cancel_button_theme.tres" id="6_id14d"]
+
+[node name="RoomLobby" type="Panel"]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xec1a")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="LobbyInformation" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RoomCodeContainer" type="NinePatchRect" parent="MarginContainer/VBoxContainer/LobbyInformation"]
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_u48va")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RoomLabel" type="Label" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Room Code: "
+label_settings = ExtResource("2_xec1a")
+
+[node name="RoomCodeLabel" type="Label" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "123456"
+label_settings = ExtResource("2_xec1a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CopyButton" type="Button" parent="MarginContainer/VBoxContainer/LobbyInformation"]
+clip_contents = true
+custom_minimum_size = Vector2(110, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("3_gc0rd")
+theme_override_styles/normal = ExtResource("4_befyh")
+text = "COPY"
+
+[node name="PlayersContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="PlayerCard" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+layout_mode = 2
+
+[node name="PlayerCard2" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+layout_mode = 2
+
+[node name="PlayerCard3" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+layout_mode = 2
+
+[node name="PlayerCard4" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+layout_mode = 2
+
+[node name="RoomActions" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/RoomActions"]
+clip_contents = true
+custom_minimum_size = Vector2(110, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("6_id14d")
+text = "EXIT"
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/RoomActions"]
+clip_contents = true
+custom_minimum_size = Vector2(110, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("3_gc0rd")
+theme_override_styles/normal = ExtResource("4_befyh")
+text = "START"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LobbyInformation/CopyButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RoomActions/ExitButton" to="." method="_on_exit_button_pressed"]

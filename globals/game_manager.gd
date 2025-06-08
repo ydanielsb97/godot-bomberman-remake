@@ -1,6 +1,6 @@
 extends Node
 
-var room_code: String
+var room_code: int
 var cards: Array[PlayerCard]:
 	get:
 		if !cards:
@@ -11,39 +11,55 @@ var cards: Array[PlayerCard]:
 					if n is PlayerCard:
 						cards.append(n)
 		return cards
-		
-var current_player_id = 1234 # Is going to be taken from multiplayer.get_unique_id()
 
-var players: Dictionary = {
-	1234: {
-		"name": "Player",
-		"skin": SkinTextures.Types.WHITE
-	},
-	12345: {
-		"name": "Player1",
-		"skin": SkinTextures.Types.RED
-	},
-	12346: {
-		"name": "Player2",
-		"skin": SkinTextures.Types.BLUE
-	},
-	12347: {
-		"name": "Player3",
-		"skin": SkinTextures.Types.GOLD
-	}
-}
+var players: Dictionary = {}
 
-func update_players_cards() -> void:
+func setup(room_id: int, _players: Dictionary) -> void:
+	players = _players
+	room_code = room_id
+
+func clear_data() -> void:
+	players = {}
+	room_code = 0
+
+func upsert_player(player_id: int, player_info: Dictionary) -> void:
+	players[player_id] = player_info
+
+func remove_player(player_id: int) -> void:
+	players.erase(player_id)
+
+func setup_players_cards() -> void:
 	var index: int = 0
+	clear_cards()
 	for player_id in players:
 		cards[index].setup(
 			player_id,
-			player_id == current_player_id,
+			player_id == multiplayer.get_unique_id(),
 			players[player_id]["name"],
 			players[player_id]["skin"]
 			)
 		index += 1
 
+func clear_cards() -> void:
+	for card in cards:
+		card.clear()
+
+func setup_player_card(player_id: int) -> void:
+	var index: int = players.keys().find(player_id)
+	cards[index].setup(
+		player_id,
+		player_id == multiplayer.get_unique_id(),
+		players[player_id]["name"],
+		players[player_id]["skin"]
+		)
+
+func update_player_card(player_id: int) -> void:
+	var index: int = players.keys().find(player_id)
+	cards[index].update_player_basic_info(
+		players[player_id].name,
+		players[player_id].skin
+	)
+	
 func update_player_name(player_id: int, player_name: String) -> void:
 	players[player_id]["name"] = player_name
 

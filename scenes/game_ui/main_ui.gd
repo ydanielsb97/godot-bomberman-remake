@@ -1,11 +1,35 @@
 extends Control
 
+@onready var main_menu: Panel = $MainMenu
+@onready var room_lobby: Panel = $RoomLobby
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	GameManager.update_players_cards()
+func _enter_tree() -> void:
+	SignalHub.room_created.connect(on_room_created)
+	SignalHub.room_deleted.connect(on_room_deleted)
+	SignalHub.room_joined.connect(on_room_joined)
+	SignalHub.room_left.connect(on_room_left)
+
+func on_room_created(room_id: int) -> void:
+	await SceneManager.fade_in()
+	
+	main_menu.hide()
+	room_lobby.show()
+
+func on_room_deleted() -> void:
+	await SceneManager.fade_in()
+	
+	main_menu.show()
+	room_lobby.hide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func on_room_joined() -> void:
+	await SceneManager.fade_in()
+	
+	main_menu.hide()
+	room_lobby.show()
+
+func on_room_left() -> void:
+	await SceneManager.fade_in()
+	
+	main_menu.show()
+	room_lobby.hide()
