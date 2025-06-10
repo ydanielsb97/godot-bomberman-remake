@@ -1,4 +1,4 @@
-extends ColorRect
+extends CanvasLayer
 
 class_name TransitionOverlay
 

@@ -1,15 +1,128 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqxaqxpepmwik"]
+[gd_scene load_steps=19 format=4 uid="uid://cqxaqxpepmwik"]
 
+[ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/images/bomberman sprite.png" id="1_befyh"]
 [ext_resource type="Texture2D" uid="uid://pj42btbhreto" path="res://assets/images/ui/blue_button_rectangle_depth_border.png" id="1_u48va"]
 [ext_resource type="Script" uid="uid://r1jquf7we1ph" path="res://scenes/game_ui/room_lobby.gd" id="1_xec1a"]
+[ext_resource type="PackedScene" uid="uid://c7vbc04eysie7" path="res://scenes/breakable_walls/breakable_wall.tscn" id="2_sp0qt"]
 [ext_resource type="LabelSettings" uid="uid://banyuxw0lv7og" path="res://resources/secondary_font.tres" id="2_xec1a"]
 [ext_resource type="Theme" uid="uid://bxcmt2bmobx56" path="res://resources/main_button_theme.tres" id="3_gc0rd"]
 [ext_resource type="StyleBox" uid="uid://c1kgq15mookjw" path="res://resources/primary_button_normal_style.tres" id="4_befyh"]
 [ext_resource type="PackedScene" uid="uid://c2cyd5vx6okr5" path="res://scenes/game_ui/player_card.tscn" id="5_sp0qt"]
 [ext_resource type="Theme" uid="uid://bbkxx4iwqmsd5" path="res://resources/cancel_button_theme.tres" id="6_id14d"]
 
-[node name="RoomLobby" type="Panel"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_id14d"]
+texture = ExtResource("1_befyh")
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+4:0/0/terrains_peering_bit/right_side = 0
+4:0/0/terrains_peering_bit/bottom_side = 0
+5:0/0 = 0
+5:0/0/terrain_set = 0
+5:0/0/terrain = 0
+5:0/0/terrains_peering_bit/bottom_side = 0
+5:0/0/terrains_peering_bit/left_side = 0
+5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 0
+5:1/0/terrains_peering_bit/right_side = 0
+5:1/0/terrains_peering_bit/left_side = 0
+5:1/0/terrains_peering_bit/top_side = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 0
+4:1/0/terrains_peering_bit/right_side = 0
+4:1/0/terrains_peering_bit/top_side = 0
+6:1/0 = 0
+6:1/0/terrain_set = 0
+6:1/0/terrain = 0
+6:1/0/terrains_peering_bit/right_side = 0
+6:1/0/terrains_peering_bit/left_side = 0
+7:1/0 = 0
+7:1/0/terrain_set = 0
+7:1/0/terrain = 0
+7:1/0/terrains_peering_bit/left_side = 0
+7:1/0/terrains_peering_bit/top_side = 0
+7:0/0 = 0
+7:0/0/terrain_set = 0
+7:0/0/terrain = 0
+7:0/0/terrains_peering_bit/bottom_side = 0
+3:2/0 = 0
+3:3/0 = 0
+3:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bc7tm"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Floor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_id14d")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ijj4"]
+texture = ExtResource("1_befyh")
+3:2/0 = 0
+3:3/0 = 0
+3:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_os8yu"]
+sources/0 = SubResource("TileSetAtlasSource_3ijj4")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0hmxm"]
+friction = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_chd8h"]
+texture = ExtResource("1_befyh")
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.33871, -5.2935, -6.88256, -5.83306, -6.10924, -6.54009, -5.55687, -7.09247, -4.71726, -7.64484, -3.75371, -8, 4.57047, -8, 5.42553, -7.39209, 5.9763, -7.00052, 6.55969, -6.34656, 6.98596, -5.73085, 7.27013, -5.30459, 7.60167, -4.73624, 8, -3.74163, 8, 4.64199, 7.60606, 5.56085, 7.25851, 6.33616, 6.64361, 7.058, 5.57421, 7.6729, 4.3841, 8, -3.21874, 8, -4.9656, 7.05212, -6.00077, 6.30809, -6.90568, 5.50162, -7.53607, 4.58468, -8, 3.49582, -8, -4.09043, -7.68627, -4.78554)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.33871, -5.2935, -6.88256, -5.83306, -6.10924, -6.54009, -5.55687, -7.09247, -4.71726, -7.64484, -3.75371, -8, 4.57047, -8, 5.42553, -7.39209, 5.9763, -7.00052, 6.55969, -6.34656, 6.98596, -5.73085, 7.27013, -5.30459, 7.60167, -4.73624, 8, -3.74163, 8, 4.64199, 7.60606, 5.56085, 7.25851, 6.33616, 6.64361, 7.058, 5.57421, 7.6729, 4.3841, 8, -3.21874, 8, -4.9656, 7.05212, -6.00077, 6.30809, -6.90568, 5.50162, -7.53607, 4.58468, -8, 3.49582, -8, -4.09043, -7.68627, -4.78554)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.33871, -5.2935, -6.88256, -5.83306, -6.10924, -6.54009, -5.55687, -7.09247, -4.71726, -7.64484, -3.75371, -8, 4.57047, -8, 5.42553, -7.39209, 5.9763, -7.00052, 6.55969, -6.34656, 6.98596, -5.73085, 7.27013, -5.30459, 7.60167, -4.73624, 8, -3.74163, 8, 4.64199, 7.60606, 5.56085, 7.25851, 6.33616, 6.64361, 7.058, 5.57421, 7.6729, 4.3841, 8, -3.21874, 8, -4.9656, 7.05212, -6.00077, 6.30809, -6.90568, 5.50162, -7.53607, 4.58468, -8, 3.49582, -8, -4.09043, -7.68627, -4.78554)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.33871, -5.2935, -6.88256, -5.83306, -6.10924, -6.54009, -5.55687, -7.09247, -4.71726, -7.64484, -3.75371, -8, 4.57047, -8, 5.42553, -7.39209, 5.9763, -7.00052, 6.55969, -6.34656, 6.98596, -5.73085, 7.27013, -5.30459, 7.60167, -4.73624, 8, -3.74163, 8, 4.64199, 7.60606, 5.56085, 7.25851, 6.33616, 6.64361, 7.058, 5.57421, 7.6729, 4.3841, 8, -3.21874, 8, -4.9656, 7.05212, -6.00077, 6.30809, -6.90568, 5.50162, -7.53607, 4.58468, -8, 3.49582, -8, -4.09043, -7.68627, -4.78554)
+
+[sub_resource type="TileSet" id="TileSet_3a25w"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_0hmxm")
+sources/0 = SubResource("TileSetAtlasSource_chd8h")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_sceat"]
+scenes/1/scene = ExtResource("2_sp0qt")
+
+[sub_resource type="TileSet" id="TileSet_6xpai"]
+sources/1 = SubResource("TileSetScenesCollectionSource_sceat")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(-651, -550)
+scale = Vector2(3.13, 3.12)
+
+[node name="Floor" type="TileMapLayer" parent="Background" groups=["floor_tilemap"]]
+tile_map_data = PackedByteArray("AAAiABYAAAAFAAEAAAAiABUAAAAFAAEAAAAiABQAAAAFAAEAAAAiABMAAAAFAAEAAAAiABIAAAAFAAEAAAAiABEAAAAFAAEAAAAiABAAAAAFAAEAAAAiAA8AAAAFAAEAAAAiAA4AAAAFAAEAAAAiAA0AAAAFAAEAAAAiAAwAAAAFAAEAAAAiAAsAAAAFAAAAAAAhABYAAAAFAAEAAAAhABUAAAAFAAEAAAAhABQAAAAFAAEAAAAhABMAAAAFAAEAAAAhABIAAAAFAAEAAAAhABEAAAAFAAEAAAAhABAAAAAFAAEAAAAhAA8AAAAFAAEAAAAhAA4AAAAFAAEAAAAhAA0AAAAFAAEAAAAhAAwAAAAFAAEAAAAhAAsAAAAFAAAAAAAgABYAAAAFAAEAAAAgABUAAAAFAAEAAAAgABQAAAAFAAEAAAAgABMAAAAFAAEAAAAgABIAAAAFAAEAAAAgABEAAAAFAAEAAAAgABAAAAAFAAEAAAAgAA8AAAAFAAEAAAAgAA4AAAAFAAEAAAAgAA0AAAAFAAEAAAAgAAwAAAAFAAEAAAAgAAsAAAAFAAAAAAAfABYAAAAFAAEAAAAfABUAAAAFAAEAAAAfABQAAAAFAAEAAAAfABMAAAAFAAEAAAAfABIAAAAFAAEAAAAfABEAAAAFAAEAAAAfABAAAAAFAAEAAAAfAA8AAAAFAAEAAAAfAA4AAAAFAAEAAAAfAA0AAAAFAAEAAAAfAAwAAAAFAAEAAAAfAAsAAAAFAAAAAAAeABYAAAAFAAEAAAAeABUAAAAFAAEAAAAeABQAAAAFAAEAAAAeABMAAAAFAAEAAAAeABIAAAAFAAEAAAAeABEAAAAFAAEAAAAeABAAAAAFAAEAAAAeAA8AAAAFAAEAAAAeAA4AAAAFAAEAAAAeAA0AAAAFAAEAAAAeAAwAAAAFAAEAAAAeAAsAAAAFAAAAAAAdABYAAAAFAAEAAAAdABUAAAAFAAEAAAAdABQAAAAFAAEAAAAdABMAAAAFAAEAAAAdABIAAAAFAAEAAAAdABEAAAAFAAEAAAAdABAAAAAFAAEAAAAdAA8AAAAFAAEAAAAdAA4AAAAFAAEAAAAdAA0AAAAFAAEAAAAdAAwAAAAFAAEAAAAdAAsAAAAFAAAAAAAcABYAAAAFAAEAAAAcABUAAAAFAAEAAAAcABQAAAAFAAEAAAAcABMAAAAFAAEAAAAcABIAAAAFAAEAAAAcABEAAAAFAAEAAAAcABAAAAAFAAEAAAAcAA8AAAAFAAEAAAAcAA4AAAAFAAEAAAAcAA0AAAAFAAEAAAAcAAwAAAAFAAEAAAAcAAsAAAAFAAAAAAAbABYAAAAFAAEAAAAbABUAAAAFAAEAAAAbABQAAAAFAAEAAAAbABMAAAAFAAEAAAAbABIAAAAFAAEAAAAbABEAAAAFAAEAAAAbABAAAAAFAAEAAAAbAA8AAAAFAAEAAAAbAA4AAAAFAAEAAAAbAA0AAAAFAAEAAAAbAAwAAAAFAAEAAAAbAAsAAAAFAAAAAAAaABYAAAAFAAEAAAAaABUAAAAFAAEAAAAaABQAAAAFAAEAAAAaABMAAAAFAAEAAAAaABIAAAAFAAEAAAAaABEAAAAFAAEAAAAaABAAAAAFAAEAAAAaAA8AAAAFAAEAAAAaAA4AAAAFAAEAAAAaAA0AAAAFAAEAAAAaAAwAAAAFAAEAAAAaAAsAAAAFAAAAAAAZABYAAAAFAAEAAAAZABUAAAAFAAEAAAAZABQAAAAFAAEAAAAZABMAAAAFAAEAAAAZABIAAAAFAAEAAAAZABEAAAAFAAEAAAAZABAAAAAFAAEAAAAZAA8AAAAFAAEAAAAZAA4AAAAFAAEAAAAZAA0AAAAFAAEAAAAZAAwAAAAFAAEAAAAZAAsAAAAFAAAAAAAYABYAAAAFAAEAAAAYABUAAAAFAAEAAAAYABQAAAAFAAEAAAAYABMAAAAFAAEAAAAYABIAAAAFAAEAAAAYABEAAAAFAAEAAAAYABAAAAAFAAEAAAAYAA8AAAAFAAEAAAAYAA4AAAAFAAEAAAAYAA0AAAAFAAEAAAAYAAwAAAAFAAEAAAAYAAsAAAAFAAAAAAAXABYAAAAFAAEAAAAXABUAAAAFAAEAAAAXABQAAAAFAAEAAAAXABMAAAAFAAEAAAAXABIAAAAFAAEAAAAXABEAAAAFAAEAAAAXABAAAAAFAAEAAAAXAA8AAAAFAAEAAAAXAA4AAAAFAAEAAAAXAA0AAAAFAAEAAAAXAAwAAAAFAAEAAAAXAAsAAAAFAAAAAAAWABYAAAAFAAEAAAAWABUAAAAFAAEAAAAWABQAAAAFAAEAAAAWABMAAAAFAAEAAAAWABIAAAAFAAEAAAAWABEAAAAFAAEAAAAWABAAAAAFAAEAAAAWAA8AAAAFAAEAAAAWAA4AAAAFAAEAAAAWAA0AAAAFAAEAAAAWAAwAAAAFAAEAAAAWAAsAAAAFAAAAAAAVABYAAAAFAAEAAAAVABUAAAAFAAEAAAAVABQAAAAFAAEAAAAVABMAAAAFAAEAAAAVABIAAAAFAAEAAAAVABEAAAAFAAEAAAAVABAAAAAFAAEAAAAVAA8AAAAFAAEAAAAVAA4AAAAFAAEAAAAVAA0AAAAFAAEAAAAVAAwAAAAFAAEAAAAVAAsAAAAFAAAAAAAUABYAAAAFAAEAAAAUABUAAAAFAAEAAAAUABQAAAAFAAEAAAAUABMAAAAFAAEAAAAUABIAAAAFAAEAAAAUABEAAAAFAAEAAAAUABAAAAAFAAEAAAAUAA8AAAAFAAEAAAAUAA4AAAAFAAEAAAAUAA0AAAAFAAEAAAAUAAwAAAAFAAEAAAAUAAsAAAAFAAAAAAATABYAAAAFAAEAAAATABUAAAAFAAEAAAATABQAAAAFAAEAAAATABMAAAAFAAEAAAATABIAAAAFAAEAAAATABEAAAAFAAEAAAATABAAAAAFAAEAAAATAA8AAAAFAAEAAAATAA4AAAAFAAEAAAATAA0AAAAFAAEAAAATAAwAAAAFAAEAAAATAAsAAAAFAAAAAAASABYAAAAFAAEAAAASABUAAAAFAAEAAAASABQAAAAFAAEAAAASABMAAAAFAAEAAAASABIAAAAFAAEAAAASABEAAAAFAAEAAAASABAAAAAFAAEAAAASAA8AAAAFAAEAAAASAA4AAAAFAAEAAAASAA0AAAAFAAEAAAASAAwAAAAFAAEAAAASAAsAAAAFAAAAAAARABYAAAAFAAEAAAARABUAAAAFAAEAAAARABQAAAAFAAEAAAARABMAAAAFAAEAAAARABIAAAAFAAEAAAARABEAAAAFAAEAAAARABAAAAAFAAEAAAARAA8AAAAFAAEAAAARAA4AAAAFAAEAAAARAA0AAAAFAAEAAAARAAwAAAAFAAEAAAARAAsAAAAFAAAAAAAQABYAAAAFAAEAAAAQABUAAAAFAAEAAAAQABQAAAAFAAEAAAAQABMAAAAFAAEAAAAQABIAAAAFAAEAAAAQABEAAAAFAAEAAAAQABAAAAAFAAEAAAAQAA8AAAAFAAEAAAAQAA4AAAAFAAEAAAAQAA0AAAAFAAEAAAAQAAwAAAAFAAEAAAAQAAsAAAAFAAAAAAAPABYAAAAFAAEAAAAPABUAAAAFAAEAAAAPABQAAAAFAAEAAAAPABMAAAAFAAEAAAAPABIAAAAFAAEAAAAPABEAAAAFAAEAAAAPABAAAAAFAAEAAAAPAA8AAAAFAAEAAAAPAA4AAAAFAAEAAAAPAA0AAAAFAAEAAAAPAAwAAAAFAAEAAAAPAAsAAAAFAAAAAAAOABYAAAAFAAEAAAAOABUAAAAFAAEAAAAOABQAAAAFAAEAAAAOABMAAAAFAAEAAAAOABIAAAAFAAEAAAAOABEAAAAFAAEAAAAOABAAAAAFAAEAAAAOAA8AAAAFAAEAAAAOAA4AAAAFAAEAAAAOAA0AAAAFAAEAAAAOAAwAAAAFAAEAAAAOAAsAAAAFAAAAAAANABYAAAAEAAEAAAANABUAAAAEAAEAAAANABQAAAAEAAEAAAANABMAAAAEAAEAAAANABIAAAAEAAEAAAANABEAAAAEAAEAAAANABAAAAAEAAEAAAANAA8AAAAEAAEAAAANAA4AAAAEAAEAAAANAA0AAAAEAAEAAAANAAwAAAAEAAEAAAANAAsAAAAEAAAAAAAjABcAAAAHAAEAAAAjABYAAAAHAAEAAAAjABUAAAAHAAEAAAAjABQAAAAHAAEAAAAjABMAAAAHAAEAAAAjABIAAAAHAAEAAAAjABEAAAAHAAEAAAAjABAAAAAHAAEAAAAjAA8AAAAHAAEAAAAjAA4AAAAHAAEAAAAjAA0AAAAHAAEAAAAjAAwAAAAHAAEAAAAiABcAAAAFAAEAAAAjAAsAAAAFAAAAAAAhABcAAAAFAAEAAAAgABcAAAAFAAEAAAAfABcAAAAFAAEAAAAeABcAAAAFAAEAAAAdABcAAAAFAAEAAAAcABcAAAAFAAEAAAAbABcAAAAFAAEAAAAaABcAAAAFAAEAAAAZABcAAAAFAAEAAAAYABcAAAAFAAEAAAAXABcAAAAFAAEAAAAWABcAAAAFAAEAAAAVABcAAAAFAAEAAAAUABcAAAAFAAEAAAATABcAAAAFAAEAAAASABcAAAAFAAEAAAARABcAAAAFAAEAAAAQABcAAAAFAAEAAAAPABcAAAAFAAEAAAAOABcAAAAFAAEAAAANABcAAAAEAAEAAAA=")
+tile_set = SubResource("TileSet_bc7tm")
+
+[node name="Undergrowth" type="TileMapLayer" parent="Background"]
+tile_map_data = PackedByteArray("AAAPABUAAAADAAIAAAAQAA8AAAADAAQAAAAQABMAAAADAAMAAAARABYAAAADAAIAAAASAA0AAAADAAIAAAASABAAAAADAAIAAAASABMAAAADAAQAAAAUAA8AAAADAAIAAAAVAA4AAAADAAIAAAAWAAwAAAADAAIAAAAWAA0AAAADAAQAAAAWAA4AAAADAAQAAAAWABIAAAADAAMAAAAYAA4AAAADAAIAAAAYABAAAAADAAMAAAAYABIAAAADAAMAAAAZAA0AAAADAAIAAAAaAA0AAAADAAQAAAAaABAAAAADAAMAAAAaABMAAAADAAQAAAAbAAwAAAADAAMAAAAbABMAAAADAAMAAAAcABEAAAADAAMAAAAcABIAAAADAAQAAAAeAAwAAAADAAMAAAAeAA0AAAADAAIAAAAeAA4AAAADAAQAAAAfAAwAAAADAAMAAAAfAA0AAAADAAIAAAAfABEAAAADAAQAAAAgAA4AAAADAAMAAAAgABAAAAADAAIAAAAgABEAAAADAAQAAAAgABIAAAADAAIAAAAgABQAAAADAAQAAAAiABIAAAADAAMAAAAiABQAAAADAAMAAAAiABYAAAADAAQAAAAOAA4AAAADAAQAAAATAAwAAAADAAQAAAARAAwAAAADAAMAAAAOABQAAAADAAIAAAAOABcAAAADAAIAAAAZABYAAAADAAMAAAA=")
+tile_set = SubResource("TileSet_os8yu")
+
+[node name="Walls" type="TileMapLayer" parent="Background" groups=["walls_tilemap"]]
+tile_map_data = PackedByteArray("AAAOAAwAAAADAAEAAAAQABEAAAACAAAAAAAeAAwAAAADAAAAAAAVABUAAAADAAEAAAAQABYAAAADAAAAAAAhABcAAAACAAAAAAAiABAAAAACAAAAAAAjAAwAAAADAAEAAAAcABUAAAADAAAAAAATABIAAAACAAAAAAATABEAAAACAAEAAAAcABAAAAADAAEAAAAUABIAAAADAAAAAAA=")
+tile_set = SubResource("TileSet_3a25w")
+
+[node name="BreakableWalls" type="TileMapLayer" parent="Background" groups=["breakable_tilemap"]]
+tile_map_data = PackedByteArray("AAAQABAAAQAAAAAAAQAPABEAAQAAAAAAAQAOAA0AAQAAAAAAAQAPAAwAAQAAAAAAAQARABYAAQAAAAAAAQAWABUAAQAAAAAAAQAWABYAAQAAAAAAAQAdABUAAQAAAAAAAQAdABQAAQAAAAAAAQAhABYAAQAAAAAAAQAiABEAAQAAAAAAAQAjABAAAQAAAAAAAQAeAA0AAQAAAAAAAQAfAAwAAQAAAAAAAQAiAAwAAQAAAAAAAQATABMAAQAAAAAAAQAcABEAAQAAAAAAAQA=")
+tile_set = SubResource("TileSet_6xpai")
+
+[node name="RoomLobby" type="Panel" parent="."]
 self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,7 +130,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xec1a")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="RoomLobby"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,14 +142,14 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RoomLobby/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="LobbyInformation" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="LobbyInformation" type="HBoxContainer" parent="RoomLobby/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RoomCodeContainer" type="NinePatchRect" parent="MarginContainer/VBoxContainer/LobbyInformation"]
+[node name="RoomCodeContainer" type="NinePatchRect" parent="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation"]
 custom_minimum_size = Vector2(350, 70)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -46,7 +159,7 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,24 +171,24 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="RoomLabel" type="Label" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer/HBoxContainer"]
+[node name="RoomLabel" type="Label" parent="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Room Code: "
 label_settings = ExtResource("2_xec1a")
 
-[node name="RoomCodeLabel" type="Label" parent="MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer/HBoxContainer"]
+[node name="RoomCodeLabel" type="Label" parent="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation/RoomCodeContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "123456"
 label_settings = ExtResource("2_xec1a")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CopyButton" type="Button" parent="MarginContainer/VBoxContainer/LobbyInformation"]
+[node name="CopyButton" type="Button" parent="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation"]
 clip_contents = true
 custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
@@ -86,30 +199,30 @@ theme = ExtResource("3_gc0rd")
 theme_override_styles/normal = ExtResource("4_befyh")
 text = "COPY"
 
-[node name="PlayersContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PlayersContainer" type="HBoxContainer" parent="RoomLobby/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="PlayerCard" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+[node name="PlayerCard" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
 layout_mode = 2
 
-[node name="PlayerCard2" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+[node name="PlayerCard2" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
 layout_mode = 2
 
-[node name="PlayerCard3" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+[node name="PlayerCard3" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
 layout_mode = 2
 
-[node name="PlayerCard4" parent="MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
+[node name="PlayerCard4" parent="RoomLobby/MarginContainer/VBoxContainer/PlayersContainer" instance=ExtResource("5_sp0qt")]
 layout_mode = 2
 
-[node name="RoomActions" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="RoomActions" type="HBoxContainer" parent="RoomLobby/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/RoomActions"]
+[node name="ExitButton" type="Button" parent="RoomLobby/MarginContainer/VBoxContainer/RoomActions"]
 clip_contents = true
 custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
@@ -119,7 +232,7 @@ focus_mode = 0
 theme = ExtResource("6_id14d")
 text = "EXIT"
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/RoomActions"]
+[node name="StartButton" type="Button" parent="RoomLobby/MarginContainer/VBoxContainer/RoomActions"]
 clip_contents = true
 custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
@@ -130,5 +243,6 @@ theme = ExtResource("3_gc0rd")
 theme_override_styles/normal = ExtResource("4_befyh")
 text = "START"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/LobbyInformation/CopyButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/RoomActions/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation/CopyButton" to="RoomLobby" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="RoomLobby/MarginContainer/VBoxContainer/RoomActions/ExitButton" to="RoomLobby" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="RoomLobby/MarginContainer/VBoxContainer/RoomActions/StartButton" to="RoomLobby" method="_on_start_button_pressed"]

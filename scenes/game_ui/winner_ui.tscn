@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://nhj35ymo5k4"]
+
+[ext_resource type="LabelSettings" uid="uid://bu102jerxku5w" path="res://resources/title.tres" id="1_0a25i"]
+[ext_resource type="Script" uid="uid://ud5u8xbamy24" path="res://scenes/game_ui/winner_ui.gd" id="1_mjt03"]
+[ext_resource type="LabelSettings" uid="uid://banyuxw0lv7og" path="res://resources/secondary_font.tres" id="2_mjt03"]
+
+[node name="WinnerUI" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mjt03")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+top_level = true
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WinnerLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "WINNER:"
+label_settings = ExtResource("1_0a25i")
+horizontal_alignment = 1
+
+[node name="WinnerNameLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "PLAYER NAME"
+label_settings = ExtResource("2_mjt03")
+horizontal_alignment = 1

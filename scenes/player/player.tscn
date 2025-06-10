@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://nwuv6b7nxv63"]
+[gd_scene load_steps=35 format=3 uid="uid://nwuv6b7nxv63"]
 
 [ext_resource type="Texture2D" uid="uid://bl64mmi5ijx64" path="res://assets/images/characters/animation characters.png" id="1_6nn2t"]
 [ext_resource type="Script" uid="uid://bh5ho78b0a84e" path="res://scenes/player/player.gd" id="1_cuyo6"]
@@ -408,29 +408,6 @@ states/die/position = Vector2(545, 206)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_0rlhq"), "RESET", "Idle", SubResource("AnimationNodeStateMachineTransition_bix7t"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_cuyo6"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_mutn8"), "Idle", "die", SubResource("AnimationNodeStateMachineTransition_oe6dy"), "Walk", "die", SubResource("AnimationNodeStateMachineTransition_cuvpk")]
 graph_offset = Vector2(0, 23)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lvxji"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:is_dead")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:current_bombs")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("AnimationTree:parameters/Idle/blend_position")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("AnimationTree:parameters/Walk/blend_position")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath(".:is_walking")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath(".:bomb_strenght")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 z_index = 2
 scale = Vector2(1.2, 1.2)
@@ -438,7 +415,6 @@ disable_mode = 2
 collision_mask = 22
 script = ExtResource("1_cuyo6")
 bomb_strenght = 2
-bomb_max = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6nn2t")
@@ -478,9 +454,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBombBox"]
 position = Vector2(-0.833333, 0.833333)
 shape = ExtResource("3_lvxji")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_lvxji")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_area_2d_area_entered"]

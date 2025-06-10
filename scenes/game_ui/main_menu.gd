@@ -63,3 +63,7 @@ func _on_try_join_room_button_pressed() -> void:
 
 func _on_room_code_input_text_submitted(_new_text: String) -> void:
 	try_join_room()
+
+
+func _on_hidden() -> void:
+	room_code_input.text = ""

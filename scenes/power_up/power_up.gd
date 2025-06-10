@@ -16,13 +16,18 @@ func setup(
 		global_position = _global_position
 
 func _on_body_entered(player: Player) -> void:
-	match type:
-		PowerUpManager.PowerUpType.BOMB:
-			apply_bomb_powerup(player)
-		PowerUpManager.PowerUpType.EXPLOSION:
-			apply_explosion_strength_powerup(player)
+	MultiplayerManager.rpc_apply_power_up_request.rpc_id(
+		1,
+		GameManager.room_code,
+		player.player_id,
+		type
+	)
 	
-	MultiplayerManager.power_up_faded.rpc_id(1, name)
+	MultiplayerManager.rpc_remove_power_up_request.rpc_id(
+		1, 
+		GameManager.room_code,
+		name
+		)
 
 func apply_bomb_powerup(player: Player) -> void:
 	player.bomb_max += 1

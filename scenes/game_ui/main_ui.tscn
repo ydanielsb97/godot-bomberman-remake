@@ -1,12 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://dfgacgv3hyvfc"]
+[gd_scene load_steps=14 format=4 uid="uid://dfgacgv3hyvfc"]
 
 [ext_resource type="Texture2D" uid="uid://bi1aeoxt30txy" path="res://assets/images/bomberman sprite.png" id="1_4xkup"]
 [ext_resource type="Script" uid="uid://do7ef3ut533x" path="res://scenes/game_ui/main_ui.gd" id="1_q1yry"]
 [ext_resource type="PackedScene" uid="uid://c7vbc04eysie7" path="res://scenes/breakable_walls/breakable_wall.tscn" id="2_r04e4"]
 [ext_resource type="PackedScene" uid="uid://cyh6l1j3krayd" path="res://scenes/game_ui/main_menu.tscn" id="3_ugynx"]
-[ext_resource type="PackedScene" uid="uid://cqxaqxpepmwik" path="res://scenes/game_ui/room_lobby.tscn" id="5_ugynx"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hmxm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r04e4"]
 texture = ExtResource("1_4xkup")
 4:0/0 = 0
 4:0/0/terrain_set = 0
@@ -51,21 +50,21 @@ texture = ExtResource("1_4xkup")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_0hmxm")
+sources/0 = SubResource("TileSetAtlasSource_r04e4")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qut61"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ugynx"]
 texture = ExtResource("1_4xkup")
 3:2/0 = 0
 3:3/0 = 0
 3:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_xgynf"]
-sources/0 = SubResource("TileSetAtlasSource_qut61")
+sources/0 = SubResource("TileSetAtlasSource_ugynx")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0hmxm"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v571y"]
 friction = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_un36d"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gihal"]
 texture = ExtResource("1_4xkup")
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.33871, -5.2935, -6.88256, -5.83306, -6.10924, -6.54009, -5.55687, -7.09247, -4.71726, -7.64484, -3.75371, -8, 4.57047, -8, 5.42553, -7.39209, 5.9763, -7.00052, 6.55969, -6.34656, 6.98596, -5.73085, 7.27013, -5.30459, 7.60167, -4.73624, 8, -3.74163, 8, 4.64199, 7.60606, 5.56085, 7.25851, 6.33616, 6.64361, 7.058, 5.57421, 7.6729, 4.3841, 8, -3.21874, 8, -4.9656, 7.05212, -6.00077, 6.30809, -6.90568, 5.50162, -7.53607, 4.58468, -8, 3.49582, -8, -4.09043, -7.68627, -4.78554)
@@ -79,14 +78,14 @@ texture = ExtResource("1_4xkup")
 [sub_resource type="TileSet" id="TileSet_0hmxm"]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_0hmxm")
-sources/0 = SubResource("TileSetAtlasSource_un36d")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_v571y")
+sources/0 = SubResource("TileSetAtlasSource_gihal")
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_un36d"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xisuj"]
 scenes/1/scene = ExtResource("2_r04e4")
 
 [sub_resource type="TileSet" id="TileSet_8xldf"]
-sources/1 = SubResource("TileSetScenesCollectionSource_un36d")
+sources/1 = SubResource("TileSetScenesCollectionSource_xisuj")
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -118,8 +117,4 @@ tile_map_data = PackedByteArray("AAAQABAAAQAAAAAAAQAPABEAAQAAAAAAAQAOAA0AAQAAAAA
 tile_set = SubResource("TileSet_8xldf")
 
 [node name="MainMenu" parent="." instance=ExtResource("3_ugynx")]
-layout_mode = 1
-
-[node name="RoomLobby" parent="." instance=ExtResource("5_ugynx")]
-visible = false
 layout_mode = 1

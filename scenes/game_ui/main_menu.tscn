@@ -76,7 +76,6 @@ text = "MBER  FRIENDS"
 label_settings = ExtResource("3_wfwiu")
 
 [node name="MenuButtonsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 20
@@ -159,11 +158,13 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 6
 
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtonsContainer/CreateRoomButton" to="." method="_on_create_room_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtonsContainer/JoinRoomButton" to="." method="_on_join_room_button_pressed"]
 [connection signal="timeout" from="MarginContainer/VBoxContainer/MenuButtonsContainer/CreateRoomTimeout" to="." method="_on_create_room_timeout_timeout"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/RoomCodeInput" to="." method="_on_room_code_input_text_changed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/RoomCodeInput" to="." method="_on_room_code_input_text_submitted"]
+[connection signal="tree_exited" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/RoomCodeInput" to="." method="_on_room_code_input_tree_exited"]
 [connection signal="timeout" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/JoinRoomTimeout" to="." method="_on_create_room_timeout_timeout"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/HBoxContainer/BackMenuButton" to="." method="_on_back_menu_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/JoinRoomMenuContainer/HBoxContainer/TryJoinRoomButton" to="." method="_on_try_join_room_button_pressed"]

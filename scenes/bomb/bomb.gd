@@ -31,7 +31,8 @@ func explode() -> void:
 	new_exposion.setup(player_ref.bomb_strenght)
 	Callable(add_child).call_deferred(new_exposion)
 	await get_tree().create_timer(.5).timeout
-	MultiplayerManager.bomb_exploded.rpc_id(1, name)
+	queue_free()
+	#MultiplayerManager.bomb_exploded.rpc_id(1, name)
 
 func is_bomb_at_position(_position: Vector2) -> bool:
 	for bomb in get_tree().get_nodes_in_group("bombs"):
@@ -46,6 +47,5 @@ func _on_timer_timeout() -> void:
 func _on_hit_box_area_entered(_area: Area2D) -> void:
 	explode()
 
-
-func _on_player_detection_box_area_exited() -> void:
+func _on_area_2d_area_exited(area: Area2D) -> void:
 	collision_shape_2d.set_deferred("disabled", false)
