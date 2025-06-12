@@ -12,8 +12,7 @@ func drop_bomb(player_id: int, _global_position: Vector2) -> bool:
 	var world_pos = tile_map_layer.map_to_local(map_pos)
 	if check_bomb_exists_in_position(world_pos): return false
 	var new_bomb: Bomb = BOMB.instantiate()
-	new_bomb.player_ref = player
-	new_bomb.global_position = world_pos
+	new_bomb.setup(player, world_pos)
 	player.current_bombs += 1
 	get_bombs_container().add_child(new_bomb)
 	return true

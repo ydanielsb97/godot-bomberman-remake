@@ -46,7 +46,7 @@ func drop_bomb() -> void:
 	)
 
 func can_drop_bomb() -> bool:
-	return current_bombs < bomb_max
+	return current_bombs < bomb_max and !is_dead
 
 func _process(delta: float) -> void:
 	if !is_authority() and !is_dead and GameManager.is_running:
@@ -95,11 +95,11 @@ func update_velocity_remotely() -> void:
 		animation_tree.set("parameters/Walk/blend_position", new_velocity)
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
-	is_dead = true
-
-func die() -> void:
 	if is_authority():
 		MultiplayerManager.rpc_player_died_request.rpc_id(1, GameManager.room_code)
+	
+func die() -> void:
+	is_dead = true
 
 func add_hat() -> void:
 	var new_accessory: Accessory = ACCESSORY.instantiate()

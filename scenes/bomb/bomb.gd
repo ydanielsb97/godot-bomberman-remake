@@ -11,12 +11,14 @@ const EXPLOSION = preload("res://scenes/bomb/explosion.tscn")
 var player_ref: Player
 var floor_tile_map_ref: TileMapLayer
 var exploding: bool = false
+var strength: int
 
 func _ready() -> void:
 	pass
 
 func setup(player: Player, world_position: Vector2) -> void:
 	player_ref = player
+	strength = player.bomb_strenght
 	global_position = world_position
 
 func explode() -> void:
@@ -28,11 +30,10 @@ func explode() -> void:
 	animated_sprite_2d.hide()
 	
 	var new_exposion = EXPLOSION.instantiate()
-	new_exposion.setup(player_ref.bomb_strenght)
+	new_exposion.setup(strength)
 	Callable(add_child).call_deferred(new_exposion)
 	await get_tree().create_timer(.5).timeout
 	queue_free()
-	#MultiplayerManager.bomb_exploded.rpc_id(1, name)
 
 func is_bomb_at_position(_position: Vector2) -> bool:
 	for bomb in get_tree().get_nodes_in_group("bombs"):

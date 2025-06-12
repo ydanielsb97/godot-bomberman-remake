@@ -6,9 +6,9 @@ const PORT: int = 27090
 const MAX_ROOMS: int = 10
 const MAX_PLAYERS_PER_ROOM = 4
 const MAX_PLAYERS: int = 100
-const MY_IP: String = "161.35.189.235"
+#const MY_IP: String = "161.35.189.235"
 #const MY_IP: String = "127.0.0.1"
-
+const MY_IP: String = "10.0.0.9"
 var rooms = {}
 
 func _ready() -> void:
@@ -170,7 +170,7 @@ func _rpc_start_game_broadcast() -> void:
 
 # -----------------------------
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "unreliable_ordered")
 func rpc_update_player_position_request(data: Dictionary) -> void:
 	var room = rooms[data["room_id"]]
 	var player_id = multiplayer.get_remote_sender_id()
@@ -179,7 +179,7 @@ func rpc_update_player_position_request(data: Dictionary) -> void:
 		if player_id != _player_id:
 			_rpc_update_player_position_broadcast.rpc_id(_player_id, player_id, data)
 
-@rpc("authority", "call_remote", "unreliable")
+@rpc("authority", "call_remote", "unreliable_ordered")
 func _rpc_update_player_position_broadcast(_player_id: int, data: Dictionary) -> void:
 	GameManager.players[_player_id]["position"] = data["position"]
 	GameManager.players[_player_id]["velocity"] = data["velocity"]
@@ -251,14 +251,20 @@ func rpc_player_died_request(room_id: int) -> void:
 	elif len(players_alive_count) < 1:
 		player_id_winner = player_id
 	
-	if player_id_winner:
-		for _player_id in rooms[room_id]:
+	
+	for _player_id in rooms[room_id]:
+		rpc_player_died_broadcast.rpc_id(_player_id, player_id)
+		if player_id_winner:
 			rpc_game_over_broadcast.rpc_id(_player_id, player_id_winner)
 
 @rpc("authority", "call_remote", "reliable")
 func rpc_game_over_broadcast(player_id_winner: int) -> void:
 	if GameManager.is_running:
 		GameManager.game_over(player_id_winner)
+
+@rpc("authority", "call_remote", "reliable")
+func rpc_player_died_broadcast(player_id: int) -> void:
+	GameManager.players[player_id]["reference"].die()
 
 #endregion
 
