@@ -17,12 +17,9 @@ func _on_hurt_area_area_entered(_area: Area2D) -> void:
 	#queue_free()
 	#
 func _on_animation_player_animation_finished(_anim_name: String) -> void:
-	if GameManager.is_admin:
-		MultiplayerManager.rpc_create_power_up_request.rpc_id(
-			1,
-			GameManager.room_code,
-			global_position
-		)
+	if GameManager.is_admin and PowerUpManager.able_to_spawn():
+		var error = MultiplayerManager.spawn_power_up_request(global_position)
+		pass
 	var tile_pos: Vector2i = tile_map_layer.local_to_map(global_position)
 	tile_map_layer.erase_cell(tile_pos)
 	queue_free()

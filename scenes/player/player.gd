@@ -10,24 +10,27 @@ const ACCESSORY = preload("res://scenes/accessories/accessory.tscn")
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var collision_bomb_box: Area2D = $CollisionBombBox
 
-@export var speed: float = 70.0
-@export var bomb_strenght = 1
+@export var speed: float = 3500.0
+@export var bomb_strength = 1
 @export var bomb_max: int = 1
 @export var is_walking: bool = false
 @export var is_dead: bool = false
 @export var current_bombs: int = 0
-@export var player_id: int
+@export var player_id: String
 @export var accessory_type: Accessory.AccessoryType
-var authority_id: int
+
+var position_threshold: float = 10.0
+
+var authority_id: String
 
 func _ready() -> void:
 	add_to_group(GroupNames.PLAYERS)
 	add_hat()
-	authority_id = multiplayer.get_unique_id()
-	var player_texture = GameManager.players[player_id]["skin"]
+	authority_id = MultiplayerManager.player_id
+	var player_texture = int(GameManager.players[player_id]["skin"])
 	sprite_2d.texture = SkinTextures.TEXTURES[player_texture]
 
-func setup(_player_id: int) -> void:
+func setup(_player_id: String) -> void:
 	player_id = _player_id
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -38,15 +41,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func drop_bomb() -> void:
 	if !can_drop_bomb(): return
-	MultiplayerManager.rpc_drop_bomb_request.rpc_id(
-		1,
-		GameManager.room_code,
-		player_id,
-		global_position
-	)
+	MultiplayerManager.drop_bomb_request()
 
 func can_drop_bomb() -> bool:
-	return current_bombs < bomb_max and !is_dead
+	return !is_dead
 
 func _process(delta: float) -> void:
 	if !is_authority() and !is_dead and GameManager.is_running:
@@ -55,30 +53,36 @@ func _process(delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	if is_authority() and !is_dead and GameManager.is_running:
-		handle_movement()
-		move_and_slide()
+	if is_dead and !GameManager.is_running: return
+	
+	if is_authority():
+		handle_movement(delta)
+	else:
+		update_velocity_remotely()
+	move_and_slide()
 
 
 func is_authority() -> bool:
 	return player_id == authority_id
 	
-func handle_movement() -> void:
+func handle_movement(delta: float) -> void:
 	var axis_x: float = Input.get_axis("ui_left", "ui_right")
 	var axis_y: float = Input.get_axis("ui_up", "ui_down")
 	
 	velocity = Vector2(
-		axis_x * speed,
-		axis_y * speed
+		axis_x * speed * delta,
+		axis_y * speed * delta
 	)
-	MultiplayerManager.rpc_update_player_position_request.rpc_id(
-		1,
-		{
-			"room_id": GameManager.room_code,
-			"velocity": velocity,
-			"position": position
+	MultiplayerManager.update_my_player_info({
+		"velocity": {
+			"x": velocity.x,
+			"y": velocity.y
+		},
+		"position": {
+			"x": position.x,
+			"y": position.y
 		}
-	)
+	})
 	is_walking = velocity != Vector2.ZERO
 	
 	if velocity:
@@ -86,17 +90,28 @@ func handle_movement() -> void:
 		animation_tree.set("parameters/Walk/blend_position", velocity)
 
 func update_velocity_remotely() -> void:
-	var new_velocity = GameManager.players[player_id]["velocity"]
-	position = GameManager.players[player_id]["position"]
-	is_walking = new_velocity != Vector2.ZERO
-	
-	if new_velocity:
-		animation_tree.set("parameters/Idle/blend_position", new_velocity)
-		animation_tree.set("parameters/Walk/blend_position", new_velocity)
+	var player_position = GameManager.players[player_id]["position"]
+	var new_position = Vector2(player_position["x"], player_position["y"])
+	if position != new_position:
+		var player_velocity = GameManager.players[player_id]["velocity"]
+		
+		var new_velocity = Vector2(player_velocity["x"], player_velocity["y"])
+		
+
+		var tween = create_tween()
+		tween.tween_property(self, "position", new_position, .150).set_trans(Tween.TRANS_LINEAR)
+
+		velocity = new_velocity
+		#position = new_position
+		is_walking = velocity != Vector2.ZERO
+		
+		if velocity:
+			animation_tree.set("parameters/Idle/blend_position", velocity)
+			animation_tree.set("parameters/Walk/blend_position", velocity)
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	if is_authority():
-		MultiplayerManager.rpc_player_died_request.rpc_id(1, GameManager.room_code)
+		MultiplayerManager.player_died_request()
 	
 func die() -> void:
 	is_dead = true

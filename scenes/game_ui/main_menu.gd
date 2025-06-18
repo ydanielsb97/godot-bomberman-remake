@@ -7,6 +7,10 @@ extends Panel
 @onready var room_code_input: LineEdit = $MarginContainer/VBoxContainer/JoinRoomMenuContainer/RoomCodeInput
 @onready var join_room_timeout: Timer = $MarginContainer/VBoxContainer/JoinRoomMenuContainer/JoinRoomTimeout
 
+func _ready() -> void:
+	var state = MultiplayerManager.socket.get_ready_state()
+	if state == WebSocketPeer.STATE_OPEN: on_connected_to_server()
+
 func _enter_tree() -> void:
 	SignalHub.connected_to_server.connect(on_connected_to_server)
 	SignalHub.room_created.connect(on_room_created)
@@ -15,17 +19,14 @@ func _enter_tree() -> void:
 func try_join_room() -> void:
 	loading.show()
 	join_room_menu_container.hide()
-	MultiplayerManager.rpc_join_room_request.rpc_id(
-		1, 
-		int(room_code_input.text),
-		multiplayer.get_unique_id())
+	MultiplayerManager.join_room_request(room_code_input.text)
 	join_room_timeout.start()
 
 func on_connected_to_server() -> void:
 	loading.hide()
 	menu_buttons_container.show()
 	
-func on_room_created(_room_id: int) -> void:
+func on_room_created(_room_id: String) -> void:
 	create_room_timeout.stop()
 	await get_tree().create_timer(1).timeout
 	loading.hide()
@@ -40,7 +41,7 @@ func on_room_joined() -> void:
 func _on_create_room_button_pressed() -> void:
 	loading.show()
 	menu_buttons_container.hide()
-	MultiplayerManager.rpc_create_room_request.rpc_id(1, multiplayer.get_unique_id())
+	MultiplayerManager.create_room_request()
 	create_room_timeout.start()
 
 func _on_create_room_timeout_timeout() -> void:

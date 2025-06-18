@@ -6,3 +6,4 @@ const PLAYER = preload("res://scenes/player/player.tscn")
 
 func _ready() -> void:
 	GameManager.is_running = true
+	GameManager.in_lobby = false

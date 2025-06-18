@@ -16,17 +16,20 @@ var strength: int
 func _ready() -> void:
 	pass
 
-func setup(player: Player, world_position: Vector2) -> void:
+func setup(player: Player, world_position: Vector2, _strength: int) -> void:
 	player_ref = player
-	strength = player.bomb_strenght
+	strength = _strength
 	global_position = world_position
 
 func explode() -> void:
 	timer.stop()
 	if exploding or !is_instance_valid(player_ref): return
 	exploding = true
+	if !GameManager.is_admin: return
 	
-	player_ref.current_bombs -= 1
+	MultiplayerManager.explode_bomb_request(name, player_ref.player_id)
+
+func destroy_bomb() -> void:
 	animated_sprite_2d.hide()
 	
 	var new_exposion = EXPLOSION.instantiate()

@@ -238,9 +238,11 @@ custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "START THE GAME (MINIMUM 2 PLAYERS)"
 focus_mode = 0
 theme = ExtResource("3_gc0rd")
 theme_override_styles/normal = ExtResource("4_befyh")
+disabled = true
 text = "START"
 
 [connection signal="pressed" from="RoomLobby/MarginContainer/VBoxContainer/LobbyInformation/CopyButton" to="RoomLobby" method="_on_texture_button_pressed"]

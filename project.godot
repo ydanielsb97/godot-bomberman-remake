@@ -23,6 +23,7 @@ PowerUpManager="*res://globals/power_up_manager.gd"
 GameManager="*res://globals/game_manager.gd"
 MultiplayerManager="*res://globals/multiplayer_manager.gd"
 SceneManager="*res://globals/scene_manager.gd"
+ActionManager="*res://globals/action_manager.gd"
 
 [display]
 

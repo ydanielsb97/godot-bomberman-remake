@@ -5,7 +5,7 @@ extends Control
 func _enter_tree() -> void:
 	SignalHub.game_over.connect(on_game_over)
 
-func on_game_over(player_id: int) -> void:
+func on_game_over(player_id: String) -> void:
 	var player = GameManager.players[player_id]
 	if !player: 
 		winner_name_label.text = "Winner has left"
